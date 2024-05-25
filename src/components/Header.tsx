@@ -1,6 +1,6 @@
 import Link from "next/link";
-import React from "react";
-import { PiCoffeeFill } from "react-icons/pi";
+import { LiaMugHotSolid } from "react-icons/lia";
+
 import { Button } from "./ui/button";
 
 const Header = () => {
@@ -8,7 +8,8 @@ const Header = () => {
     <header className="mb-16">
       <div className="mx-auto flex max-w-2xl justify-between px-4 py-4">
         <Link href="/" className="inline-flex items-center gap-1">
-          <PiCoffeeFill className="text-[32px]" />
+          <LiaMugHotSolid className="text-[32px]" />
+
           <span className="mt-2">Buy me a coffe</span>
         </Link>
         <nav className="mt-2 flex items-center gap-6">
@@ -19,8 +20,11 @@ const Header = () => {
             <Button className="ml-4 rounded-full border-2 bg-transparent text-foreground">
               Login
             </Button>
-            <Button className="rounded-full bg-yellow-300 text-foreground">
-              Sign up
+            <Button
+              className="rounded-full bg-yellow-300 text-foreground"
+              asChild
+            >
+              <Link href={"/sign-in"}>Sign up</Link>
             </Button>
           </div>
         </nav>
