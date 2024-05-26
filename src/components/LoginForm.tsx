@@ -19,7 +19,6 @@ import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
 
 const FormSchema = z.object({
-  fullName: z.string(),
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
@@ -28,12 +27,11 @@ const FormSchema = z.object({
   }),
 });
 
-export default function RegisterForm() {
+export default function LoginForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: "",
-      fullName: "",
       password: "",
     },
   });
@@ -51,22 +49,9 @@ export default function RegisterForm() {
 
   return (
     <div className="w-full max-w-sm rounded-lg border-t-4 border-yellow-300 p-5 shadow-lg">
-      <h1 className="my-4 text-xl font-bold">Register</h1>
+      <h1 className="my-4 text-xl font-bold">LogIn</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="fullName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Full name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Full name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name="username"
@@ -98,7 +83,7 @@ export default function RegisterForm() {
             Submit
           </Button>
           <Link className="mt-3 block text-right text-sm" href="/">
-            Already have an account? <span className="underline ">Login</span>
+            Not registred yet? <span className="underline ">Register</span>
           </Link>
         </form>
       </Form>

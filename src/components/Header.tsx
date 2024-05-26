@@ -17,8 +17,11 @@ const Header = () => {
           <Link href={"/about"}>FAQ</Link>
           <Link href={"/about"}>Contact</Link>
           <div className="flex gap-4">
-            <Button className="ml-4 rounded-full border-2 bg-transparent text-foreground">
-              Login
+            <Button
+              className="ml-4 rounded-full border-2 bg-transparent text-foreground"
+              asChild
+            >
+              <Link href={"/log-in"}>Log in</Link>
             </Button>
             <Button
               className="rounded-full bg-yellow-300 text-foreground"
