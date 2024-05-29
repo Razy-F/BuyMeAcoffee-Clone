@@ -97,7 +97,7 @@ export default function RegisterForm() {
           <Button className="bg-yellow-300 text-black" type="submit">
             Submit
           </Button>
-          <Link className="mt-3 block text-right text-sm" href="/">
+          <Link className="mt-3 block text-right text-sm" href="/log-in">
             Already have an account? <span className="underline ">Login</span>
           </Link>
         </form>

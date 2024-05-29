@@ -82,7 +82,7 @@ export default function LoginForm() {
           <Button className="bg-yellow-300 text-black" type="submit">
             Submit
           </Button>
-          <Link className="mt-3 block text-right text-sm" href="/">
+          <Link className="mt-3 block text-right text-sm" href="/sign-in">
             Not registred yet? <span className="underline ">Register</span>
           </Link>
         </form>
