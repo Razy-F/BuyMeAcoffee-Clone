@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
+import { signIn } from "@/auth";
 
 const FormSchema = z.object({
   fullName: z.string(),
@@ -38,7 +39,7 @@ export default function RegisterForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
       title: "You submitted the following values:",
       description: (
@@ -47,6 +48,7 @@ export default function RegisterForm() {
         </pre>
       ),
     });
+    await signIn("credentials", data);
   }
 
   return (
