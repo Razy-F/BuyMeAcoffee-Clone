@@ -48,7 +48,7 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-sm rounded-lg border-t-4 border-yellow-300 p-5 shadow-lg">
+    <div className="w-full max-w-sm rounded-lg border-t-4 border-yellow-300 bg-card p-5 shadow-lg">
       <h1 className="my-4 text-xl font-bold">LogIn</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -83,7 +83,7 @@ export default function LoginForm() {
             Submit
           </Button>
           <Link className="mt-3 block text-right text-sm" href="/sign-in">
-            Not registred yet? <span className="underline ">Register</span>
+            Not registred yet? <span className="underline">Register</span>
           </Link>
         </form>
       </Form>
