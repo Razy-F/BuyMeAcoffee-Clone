@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { userData } from "./data/users";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -17,11 +18,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (credentials) => {
         console.log("this are credentials ", credentials);
-        const user = {
-          id: "1",
-          fullName: "Hello world",
-          password: "123456789",
-        };
+        const user = userData.find(
+          (user) =>
+            user.fullName === credentials.email &&
+            user.password === credentials.password,
+        );
         if (user) {
           return user;
         } else {
