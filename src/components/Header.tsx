@@ -23,10 +23,7 @@ const Header = () => {
             >
               <Link href={"/log-in"}>Log in</Link>
             </Button>
-            <Button
-              className="rounded-full bg-yellow-300 text-foreground"
-              asChild
-            >
+            <Button className="rounded-full" asChild>
               <Link href={"/sign-in"}>Sign up</Link>
             </Button>
           </div>
