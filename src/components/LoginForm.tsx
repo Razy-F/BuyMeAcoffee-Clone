@@ -17,15 +17,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
-
-const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  password: z.string().min(6, {
-    message: "Password must be at least 6 characters.",
-  }),
-});
+import { FormSchema } from "@/lib/zod";
+import { useFormStatus } from "react-dom";
 
 export default function LoginForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -35,6 +28,11 @@ export default function LoginForm() {
       password: "",
     },
   });
+
+  const {
+    reset,
+    formState: { isSubmitting },
+  } = form;
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
