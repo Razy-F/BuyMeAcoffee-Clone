@@ -1,7 +1,7 @@
 export const userData = [
   {
     id: "1",
-    fullName: "Hello world",
-    password: "123456789",
+    username: "admin",
+    password: "admin",
   },
 ];
