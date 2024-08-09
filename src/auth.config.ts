@@ -2,19 +2,29 @@ import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
   pages: {
-    signIn: "/login",
+    signIn: "/log-in",
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
+      console.log("🍪 auth 🍪");
+      console.log(auth);
+      console.log("🍪 auth 🍪");
       const isLoggedIn = !!auth?.user;
-      const isProtectedPath = nextUrl.pathname.startsWith("/protected");
-      if (isProtectedPath) {
-        if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
+      const isHomePage = nextUrl.pathname === "/";
+      if (isHomePage) {
+        return true;
       } else if (isLoggedIn) {
-        return Response.redirect(new URL("/", nextUrl));
+        if (nextUrl.searchParams.get("callbackUrl")) {
+          console.log("render the callback");
+          return Response.redirect(
+            new URL(nextUrl.searchParams.get("callbackUrl") as string),
+          );
+        } else {
+          return true;
+        }
+      } else {
+        false;
       }
-      return true;
     },
   },
   providers: [], // Add providers with an empty array for now
