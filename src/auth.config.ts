@@ -6,9 +6,6 @@ export const authConfig = {
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
-      console.log("🍪 auth 🍪");
-      console.log(auth);
-      console.log("🍪 auth 🍪");
       const isLoggedIn = !!auth?.user;
       const isHomePage = nextUrl.pathname === "/";
       if (isHomePage) {
