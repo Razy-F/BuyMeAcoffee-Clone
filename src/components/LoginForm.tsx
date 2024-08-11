@@ -19,6 +19,7 @@ import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import { FormSchema } from "@/lib/zod";
 import { useFormStatus } from "react-dom";
+import { logIn } from "@/lib/server/actions";
 
 export default function LoginForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -34,7 +35,7 @@ export default function LoginForm() {
     formState: { isSubmitting },
   } = form;
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
       title: "You submitted the following values:",
       description: (
@@ -43,8 +44,14 @@ export default function LoginForm() {
         </pre>
       ),
     });
+    try {
+      await logIn(data);
+    } catch (error) {
+      console.log(error);
+      reset();
+    }
+    reset();
   }
-
   return (
     <div className="w-full max-w-sm rounded-lg border-t-4 border-yellow-300 bg-card p-5 shadow-lg">
       <h1 className="my-4 text-xl font-bold">LogIn</h1>
