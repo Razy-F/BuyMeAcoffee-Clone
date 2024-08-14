@@ -16,6 +16,7 @@ import {
 const Header = async () => {
   const session = await auth();
   const firstName = session?.user?.name?.split(" ")[0];
+
   return (
     <header className="mb-16">
       <div className="mx-auto flex max-w-2xl justify-between px-4 py-4">
@@ -31,7 +32,7 @@ const Header = async () => {
           <div className="flex gap-4">
             {session && (
               <DropdownMenu>
-                <DropdownMenuTrigger>
+                <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="gap-2">
                     <FaUser />
                     My Account
@@ -42,7 +43,11 @@ const Header = async () => {
                     {firstName} ☕
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link className="w-full" href={"/profile"}>
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem>
                     <form
                       action={async () => {
